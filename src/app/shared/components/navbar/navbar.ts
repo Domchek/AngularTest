@@ -8,6 +8,4 @@ import { Brand } from '../brand/brand';
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })
-export class Navbar {
-  @Input({ required: true }) links!: { path: string, label: string }[];
-}
+export class Navbar { } // TODO: Logout
