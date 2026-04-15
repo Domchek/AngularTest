@@ -7,13 +7,15 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './app-button.css',
 })
 export class AppButton {
-  @Input() public type: "primary" | "secondary";
+  @Input() public variant: "primary" | "secondary";
   @Input({ required: true }) public text: string;
+  @Input() public type: string;
   @Output() onClick = new EventEmitter<any>();
 
   constructor() {
-    this.type = "primary";
+    this.variant = "primary";
     this.text = "";
+    this.type = "button";
   }
 
   onClickBtn(event: any) {

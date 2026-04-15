@@ -1,0 +1,34 @@
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    border-radius: 5px;
+    border: 0.15rem solid #c0c4c6;
+    padding: 0.1rem 0;
+}
+
+.page-number {
+    opacity: .75;
+    font-size: 0.9rem;
+}
+
+.page-number strong {
+    width: 1rem;
+    min-width: 1rem;
+    max-width: 1rem;
+    display: inline-block;
+}
+
+.pagination button {
+    background-color: transparent;
+    border: none;
+    opacity: .5;
+}
+
+.pagination button:hover {
+    opacity: 1;
+}
+
+.pagination svg {
+    width: 2rem;
+}

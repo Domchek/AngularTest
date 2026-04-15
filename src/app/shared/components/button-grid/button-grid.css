@@ -1,0 +1,21 @@
+.button-grid {
+    display: flex;
+    width: fit-content;
+}
+
+.button-grid button {
+    background-color: transparent;
+    border: none;
+    width: 2.2rem;
+    aspect-ratio: 1;
+    height: auto;
+    border-radius: 10px;
+}
+
+.button-grid button:hover {
+    scale: 1.2;
+}
+
+.button-grid button svg {
+    width: 100%;
+}

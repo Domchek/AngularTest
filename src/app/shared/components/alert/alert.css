@@ -1,0 +1,32 @@
+.alert {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    background-color: rgba(255, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: .5rem 1rem;
+}
+
+.alert .indicator {
+    width: 2.5rem;
+    height: fit-content;
+}
+
+.alert .indicator svg {
+    width: 100%;
+}
+
+.alert .indicator svg {
+    stroke: rgba(255, 0, 0, 0.8);
+}
+
+.alert .indicator svg path {
+    stroke: rgba(255, 0, 0, 0.8);
+}
+
+.alert p {
+    letter-spacing: 0.02rem;
+    color: rgba(255, 0, 0, 0.8);
+    font-size: 1rem;
+    font-weight: 500;
+}

@@ -1,0 +1,19 @@
+<div class="input-container">
+    @if(label) {
+    <span>{{label}}</span>
+    }
+    <label class="input-box" [for]="name">
+        @if (field) {
+        <input [type]="type" [placeholder]="placeholder" [formField]="field" />
+        } @else {
+        <input [name]="name" [type]="type" [placeholder]="placeholder" />
+        }
+    </label>
+    @if(errors){
+    <p class="error">
+        @for (error of errors; track error.kind) {
+        <span>{{ error.message }}</span>
+        }
+    </p>
+    }
+</div>

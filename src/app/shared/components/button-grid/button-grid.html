@@ -1,0 +1,5 @@
+<div class="button-grid">
+    @for (action of actions; track action.name) {
+        <button [innerHTML]="action.icon" [aria-label]="action.name" (click)="onBtnClick(action.name)"></button>
+    }
+</div>

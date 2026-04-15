@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+//import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Brand } from '../brand/brand';
 
 @Component({
   selector: 'navbar',
-  imports: [RouterLink, RouterLinkActive, Brand],
+  imports: [Brand],//RouterLink, RouterLinkActive, 
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })

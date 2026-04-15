@@ -1,0 +1,26 @@
+header {
+    width: 100%;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+header .title {
+    display: flex;
+    gap: .2rem;
+    flex-direction: column;
+}
+
+header h1 {
+    font-size: 3rem;
+}
+
+header .subtitle {
+    font-size: .9rem;
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
