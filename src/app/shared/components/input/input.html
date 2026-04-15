@@ -3,6 +3,9 @@
     <span>{{label}}</span>
     }
     <label class="input-box" [for]="name">
+        @if(icon) {
+        <span class="icon" [innerHTML]="icon"></span>
+        }
         @if (field) {
         <input [type]="type" [placeholder]="placeholder" [formField]="field" />
         } @else {
