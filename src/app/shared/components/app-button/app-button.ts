@@ -10,6 +10,7 @@ export class AppButton {
   @Input() public variant: "primary" | "secondary";
   @Input({ required: true }) public text: string;
   @Input() public type: string;
+  @Input() public disabled?: boolean;
   @Output() onClick = new EventEmitter<any>();
 
   constructor() {
