@@ -39,7 +39,11 @@ Open [http://localhost:4200](http://localhost:4200) in your browser. The dev ser
 
 The app reloads automatically when you edit source files.
 
-## 4. Build for production
+## 4. Sign in
+
+There are no environment variables or `.env` files to configure. On first load you are redirected to `/settings`, where you enter your AllHours **Client ID** and **Client Secret**. On submit the app exchanges them for an access token and stores it in `localStorage`; every subsequent API call reads the token from there. To switch accounts or refresh a token, return to `/settings` and submit again.
+
+## 5. Build for production
 
 ```bash
 npm run build
@@ -69,12 +73,11 @@ src/
 │       ├── components/    # Reusable UI components
 │       ├── model/         # TypeScript interfaces
 │       └── styles/        # Shared stylesheets
-├── environments/          # Environment config (git-ignored)
 └── styles.css             # Global styles
 ```
 
 ## Troubleshooting
 
 - **CORS error on `/auth/connect/token`** — ensure `proxy.conf.json` exists and `npm start` is used (not `ng serve` without the proxy config referenced in [angular.json](angular.json)).
-- **`environment.ts` missing** — step 3 must be completed before the app will build.
+- **Redirected to `/settings` unexpectedly** — the stored token has expired or is invalid. Enter your Client ID and Secret again to obtain a fresh one.
 - **Port 4200 in use** — run with a different port: `npm start -- --port 4300`.
