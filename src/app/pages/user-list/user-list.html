@@ -49,7 +49,7 @@
                 <app-input name="lastName" placeholder="Last name" [field]="loginForm.lastName"></app-input>
                 <app-input name="email" type="email" placeholder="Email" [field]="loginForm.email"></app-input>
             </fieldset>
-            <app-button text="Add" type="submit" style="margin-left: auto;"></app-button>
+            <app-button text="Add" type="submit" [loading]="userLoading()" [disabled]="userLoading()" style="margin-left: auto;"></app-button>
         </form>
     </modal>
     }
@@ -68,7 +68,7 @@
             </mat-select>
         </mat-form-field>
         <date-filter (onChange)="addAbsenceDates($event)"></date-filter>
-        <app-button [disabled]="!absenceFormFilled() || absenceSubmitting()" text="Add" style="margin-left: auto;"
+        <app-button [loading]="absenceSubmitting()" [disabled]="!absenceFormFilled() || absenceSubmitting()" text="Add" style="margin-left: auto;"
             (click)="addUserAbsence()"></app-button>
     </modal>
     }

@@ -41,6 +41,7 @@ export class UserList {
   public rightPage: WritableSignal<boolean> = signal(true);
   public openAddUserModal: WritableSignal<boolean> = signal(false);
   public openAddAbsenceModal: WritableSignal<boolean> = signal(false);
+  public userLoading: WritableSignal<boolean> = signal(false);
   public absences: WritableSignal<FeedAbsenceDefinitionData[]> = signal([]);
   public currentUser: WritableSignal<string | null> = signal(null);
   public currentAbsence: WritableSignal<FeedAbsenceDefinitionData | null> = signal(null);
@@ -105,7 +106,7 @@ export class UserList {
     this.api.getUsers().then(users => {
       this.users = users;
       this.setFeed(users);
-    }).catch(err => console.error(err));
+    }).catch(err => console.error(err)).finally(() => this.loading.set(false));
 
     this.api.getUserAbsenceDefinitions().then(absences => this.absences.set(
       absences.filter(e => e.IsActive).map(e => ({
@@ -117,8 +118,6 @@ export class UserList {
         categoryDefinitionName: e.CategoryDefinitionName
       }))
     )).catch(err => console.error(err));
-
-    setTimeout(() => this.loading.set(false), 1500);
   }
 
   search(value: string) {
@@ -168,10 +167,13 @@ export class UserList {
     event.preventDefault();
     submit(this.loginForm, async () => {
       const data = this.loginModel();
+      this.userLoading.set(true);
       try {
-        await this.api.createUser(data);
-        this.openAddUserModal.set(false);
-        location.reload();
+        await this.api.createUser(data).then().catch(err => console.error(err)).finally(() => {
+          this.userLoading.set(false);
+          this.openAddUserModal.set(false);
+          location.reload();
+        });
       } catch (err) {
         console.error(err);
       }

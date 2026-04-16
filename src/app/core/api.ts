@@ -98,33 +98,8 @@ export class Api {
         return await response.json();
     }
 
-    private async delete(url: string): Promise<void> {
-        if (!this.verify()) throw new Error("Unauthorized");
-        const response = await fetch(`${this.url}api/${url}`, {
-            method: "DELETE",
-            headers: this.getHeaders("application/json")
-        });
-        if (!response.ok)
-            throw new Error(await this.parseError(response));
-    }
-
-    private async deleteNoResponse(url: string): Promise<void> {
-        if (!this.verify()) throw new Error("Unauthorized");
-        const response = await fetch(`${this.url}api/${url}`, {
-            method: "DELETE",
-            headers: this.getHeaders("application/json")
-        });
-        if (!response.ok)
-            throw new Error(await this.parseError(response));
-    }
-
     async createSession(client_id: string, client_secret: string): Promise<TokenInfo> {
         return await this.publicPost("connect/token", { grant_type: "client_credentials", client_id, client_secret, scope: "api" }, true);
-    }
-
-    async deleteSession(): Promise<void> {
-        await this.deleteNoResponse("Session"); // TODO
-        this.clearSession();
     }
 
     setToken(tokenInfo: TokenInfo) {

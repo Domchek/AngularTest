@@ -29,3 +29,8 @@
     background: white;
     border: .1rem solid black;
 }
+
+.app-button svg {
+    width: 1.2rem;
+    animation: spin .75s linear infinite;
+}

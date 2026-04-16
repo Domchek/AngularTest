@@ -8,7 +8,7 @@
     <form (submit)="onSubmit($event)">
         <fieldset>
             <app-input name="id" placeholder="ID" [field]="loginForm.id"></app-input>
-            <app-input name="secret" placeholder="Secret" [field]="loginForm.secret"></app-input>
+            <app-input type="password" name="secret" placeholder="Secret" [field]="loginForm.secret"></app-input>
         </fieldset>
         <app-button text="Submit" variant="secondary" type="submit"></app-button>
     </form>
