@@ -215,23 +215,18 @@ export class UserList {
     const end = this.dateAbsenceEnd();
     if (!user || !absence) return;
 
-    const days: Date[] = [];
-    if (this.isValidDate(start) && this.isValidDate(end)) {
-      const cursor = this.stripTime(start);
-      const last = this.stripTime(end);
-      while (cursor.getTime() <= last.getTime()) {
-        days.push(new Date(cursor));
-        cursor.setDate(cursor.getDate() + 1);
-      }
-    } else
-      return;
+    if (!this.isValidDate(start) || !this.isValidDate(end)) return;
 
     this.absenceError.set(null);
     this.absenceSubmitting.set(true);
-    try {
-      for (const day of days)
-        await this.api.createUserAbsence(user, absence.id, day);
 
+    const cursor = this.stripTime(start);
+    const last = this.stripTime(end);
+    try {
+      while (cursor.getTime() <= last.getTime()) {
+        await this.api.createUserAbsence(user, absence.id, new Date(cursor));
+        cursor.setDate(cursor.getDate() + 1)
+      }
       this.closeAbsenceModal();
     } catch (err) {
       console.error(err);
