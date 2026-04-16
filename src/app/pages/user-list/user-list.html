@@ -1,0 +1,75 @@
+<div class="container">
+    <page-header title="Users" subtitle="Display" style="flex: 0 1 auto">
+        @if(!loading()) {
+        <pagination [limit]="limit" [offset]="offset" [leftPage]="leftPage()" [rightPage]="rightPage()"
+            (onChange)="onPageChange($event)"></pagination>
+        }
+        <search-input (onSearch)="search($event)" placeholder="Search..."></search-input>
+        <app-button text="Absences" variant="secondary" (click)="onAbsenceClick()"></app-button>
+        <app-button text="Add user" (click)="addUser()"></app-button>
+    </page-header>
+    <section class="content">
+        @if(loading()) {
+        <img class="spinner" src="svg/load.svg" />
+        } @else {
+        <table>
+            <thead>
+                <tr>
+                    <th>Full name</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (user of displayedUsers(); track user.id) {
+                <tr>
+                    <td>{{user.fullName}}</td>
+                    <td>{{user.email}}</td>
+                    <td>
+                        <button-grid class="actions" (onClick)="actionClick($event, user.id)"
+                            [actions]="actions"></button-grid>
+                    </td>
+                </tr>
+                }
+                <tr class="last">
+                    <td></td>
+                    <td>Total: {{filteredUsers.length}}</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        }
+    </section>
+    @if(openAddUserModal()){
+    <modal title="Add user" (onClose)="openAddUserModal.set(false)">
+        <p>Fill in the first name, last name and email.</p>
+        <form (submit)="onSubmit($event)">
+            <fieldset>
+                <app-input name="firstName" placeholder="First name" [field]="loginForm.firstName"></app-input>
+                <app-input name="lastName" placeholder="Last name" [field]="loginForm.lastName"></app-input>
+                <app-input name="email" type="email" placeholder="Email" [field]="loginForm.email"></app-input>
+            </fieldset>
+            <app-button text="Add" type="submit" style="margin-left: auto;"></app-button>
+        </form>
+    </modal>
+    }
+    @if(openAddAbsenceModal()){
+    <modal title="Add absence" (onClose)="closeAbsenceModal()">
+        <p>Fill in the form to add absence to the user.</p>
+        @if(absenceError()) {
+        <app-alert [text]="absenceError()!"></app-alert>
+        }
+        <mat-form-field>
+            <mat-label>Absence type</mat-label>
+            <mat-select (selectionChange)="addAbsenceType($event)">
+                @for (absence of absences(); track absence.id) {
+                <mat-option [value]="absence">{{absence.name}}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+        <date-filter (onChange)="addAbsenceDates($event)"></date-filter>
+        <app-button [disabled]="!absenceFormFilled() || absenceSubmitting()" text="Add" style="margin-left: auto;"
+            (click)="addUserAbsence()"></app-button>
+    </modal>
+    }
+</div>

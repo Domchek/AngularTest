@@ -1,0 +1,30 @@
+export interface FeedUser {
+    address?: string;
+    birthDate?: Date;
+    calculationLockDate?: Date;
+    calculationStartDate?: Date;
+    calculationStopDate?: Date;
+    city?: string;
+    createdOn?: Date;
+    customId?: string;
+    email: string;
+    eventLockDate?: Date;
+    firstName: string;
+    fullName: string;
+    gender?: string;
+    hasAssignedPin?: boolean;
+    hasUserAccount?: boolean;
+    id: string;
+    isArchived?: boolean;
+    isTimeAttendanceUser?: boolean;
+    lastName: string;
+    middleName?: string;
+    mobile?: string;
+    phone?: string;
+    pictureUri?: string;
+    state?: string;
+    updatedOn?: Date;
+    userAccountId?: string;
+    userName?: string;
+    sortBySearch: number;
+}

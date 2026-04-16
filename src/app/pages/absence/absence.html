@@ -1,0 +1,36 @@
+<div class="container">
+    <page-header title="Absences" subtitle="Display" style="flex: 0 1 auto">
+        @if(!loading()) {
+            <pagination [limit]="limit" [offset]="offset" [leftPage]="leftPage()" [rightPage]="rightPage()" (onChange)="onPageChange($event)"></pagination>
+        }
+        <app-button text="Go back" variant="secondary" (click)="onGoBackClick()"></app-button>
+        <app-button text="Refresh" variant="primary" (click)="refreshButton()"></app-button>
+        <date-filter [defaultStart]="dateFilterStart()" [defaultEnd]="dateFilterEnd()" (onChange)="filterByDate($event)"></date-filter>
+    </page-header>
+    <section class="content">
+        @if(loading()) {
+        <img class="spinner" src="svg/load.svg" />
+        } @else {
+        <table>
+            <thead>
+                <tr>
+                    <th>Full name</th>
+                    <th>Info</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (absence of displayedAbsences(); track absence.id) {
+                <tr>
+                    <td>{{absence.fullName}}</td>
+                    <td>{{absence.info}}</td>
+                </tr>
+                }
+                <tr class="last">
+                    <td>Total</td>
+                    <td>{{filteredAbsences.length}}</td>
+                </tr>
+            </tbody>
+        </table>
+        }
+    </section>
+</div>

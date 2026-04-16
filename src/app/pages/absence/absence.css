@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    padding: 1rem 10rem;
+}
+
+.content {
+    flex: 1 1 0;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+.spinner {
+    margin: auto;
+    width: 4rem;
+    height: auto;
+    aspect-ratio: 1;
+    animation: spin .75s linear infinite;
+    margin: auto;
+}

@@ -1,0 +1,8 @@
+{
+  "/auth": {
+    "target": "https://login.spica.com",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": { "^/auth": "" }
+  }
+}

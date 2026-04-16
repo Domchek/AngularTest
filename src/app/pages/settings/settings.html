@@ -1,0 +1,15 @@
+<div class="settings-box">
+    <img src="image/main-icon.png" />
+    <h1>Settings</h1>
+    <p>Submit the following form by filling in the ID and secret of the client</p>
+    @if(showAlert()) {
+    <app-alert text="ID or secret is incorrect. Try again."></app-alert>
+    }
+    <form (submit)="onSubmit($event)">
+        <fieldset>
+            <app-input name="id" placeholder="ID" [field]="loginForm.id"></app-input>
+            <app-input name="secret" placeholder="Secret" [field]="loginForm.secret"></app-input>
+        </fieldset>
+        <app-button text="Submit" variant="secondary" type="submit"></app-button>
+    </form>
+</div>
